@@ -8,7 +8,7 @@ public class Medico extends Pessoa {
     private String crm;
     private Especialidade especialidade;
 
-    public Medico(String nome, String cpf, DateTimeFormatter dataNascimento, String crm, Especialidade especialidade) {
+    public Medico(String nome, String cpf, LocalDate dataNascimento, String crm, Especialidade especialidade) {
         super(nome, cpf, dataNascimento);
         this.crm = crm;
         this.especialidade = especialidade;
@@ -23,10 +23,14 @@ public class Medico extends Pessoa {
     }
 
     public void salvarEmCSV(String caminhoArquivo) {
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String textDate = getDataNascimento().format(formatter)
+        LocalDate parsedDate = LocalDate.parse(textDate, formatter)
+        
         String linha = getNome() + "," +
                        getCpf() + "," +
-                       getDataNascimento().ofPattern("dd/MM/yyyy") + "," +
+                       parsedDate + "," +
                        crm + "," +
                        especialidade.getNomeAmigavel();
 
