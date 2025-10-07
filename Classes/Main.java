@@ -31,9 +31,12 @@ public class Main {
                     finalizarConsultaPeloMenu(scanner, sistema);
                     break;
                 case 5:
-                    sistema.gerarRelatorioOcupacaoQuartos();
+                    listarCadastros(scanner, sistema);
                     break;
                 case 6:
+                    sistema.gerarRelatorioOcupacaoQuartos();
+                    break;
+                case 7:
                     System.out.println("Salvando dados e encerrando o programa");
                     sistema.salvarDados();
                     scanner.close();
@@ -51,8 +54,9 @@ public class Main {
         System.out.println("2. Cadastrar Novo Médico");
         System.out.println("3. Agendar Consulta");
         System.out.println("4. Finalizar consulta");
-        System.out.println("5. Gerar Relatório de Ocupação");
-        System.out.println("6. Salvar e Sair");
+        System.out.println("5. Listar Cadastros");
+        System.out.println("6. Gerar Relatório de Ocupação");
+        System.out.println("7. Salvar e Sair");
         System.out.print("Escolha uma opção: ");
     }
 
@@ -208,6 +212,41 @@ public class Main {
     } 
         catch (Exception e) {
         System.out.println("Erro: Opção inválida ou dados incorretos. Operação cancelada.");
+    }
+}
+private static void listarCadastros(Scanner scanner, SistemaHospitalar sistema) {
+    System.out.println("\nListar Cadastros");
+    System.out.println("1. Listar Pacientes");
+    System.out.println("2. Listar Médicos");
+    System.out.print("Escolha uma opção: ");
+    int escolha = lerOpcao(scanner);
+
+    switch (escolha) {
+        case 1:
+            System.out.println("\nLista de Pacientes");
+            List<Paciente> pacientes = sistema.getPacientes();
+            if (pacientes.isEmpty()) {
+                System.out.println("Nenhum paciente cadastrado");
+            } else {
+                for (Paciente p : pacientes) {
+                    String tipo = (p instanceof PacientePlano) ? "COM PLANO" : "COMUM";
+                    System.out.printf("- Nome: %s | CPF: %s | Tipo: %s\n", p.getNome(), p.getCpf(), tipo);
+                }
+            }
+            break;
+        case 2:
+            System.out.println("\n-- Lista de Médicos --");
+            List<Medico> medicos = sistema.getMedicos();
+            if (medicos.isEmpty()) {
+                System.out.println("Nenhum médico cadastrado");
+            } else {
+                for (Medico m : medicos) {
+                    System.out.printf("- Nome: %s | CRM: %s | Especialidade: %s\n", m.getNome(), m.getCrm(), m.getEspecialidade().getNomeAmigavel());
+                }
+            }
+            break;
+        default:
+            System.out.println("Opção inválida");
     }
 }
 }
