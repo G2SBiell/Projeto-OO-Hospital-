@@ -4,22 +4,29 @@
 Este projeto é uma aplicação de console em Java que simula um sistema de gerenciamento para um hospital. O objetivo foi aplicar conceitos avançados de Orientada a Objetos para criar um sistema coeso e extensível.
 
 Funcionalidades Principais
+ 
 **Cadastro de Entidades:**
     * Cadastro de Pacientes.
     * Cadastro de Médicos com especialidades definidas.
     **Gerenciamento de Consultas:**
     * Agendamento de novas consultas com validação de conflito de horário para médicos.
     * Finalização de consultas com registro de diagnóstico e prescrição.
+    
 **Sistema de Internação:**
     * Registro de internações com alocação automática de quartos vagos.
     * Finalização de internações com cálculo de custo.
+    
 **Lógica de Faturamento:**
     * Cálculo de valor final de consultas e internações.
     * Aplicação de descontos variados por plano de saúde, especialidade médica e idade do paciente(+60 anos).
+    
 **Persistência de Dados:**
     * Todos os dados de médicos, pacientes e consultas são salvos em arquivos `.csv` locais, garantindo que as informações não se percam ao fechar o programa.
+    
 **Relatórios:**
-    * Geração de relatórios de ocupação de quartos, consultas por período e pacientes atendidos por médico.**Interface Interativa:**
+    * Geração de relatórios de ocupação de quartos, consultas por período e pacientes atendidos por médico.
+    
+   **Interface Interativa:**
     * Menu de console interativo para que o usuário possa utilizar o sistema de forma amigável.
 
 **Tecnologias Utilizadas**
